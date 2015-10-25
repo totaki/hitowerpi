@@ -1,13 +1,14 @@
+import hitowerpi.test as test
 from hitowerpi import config
 
-HELP = "\nThis is Hightower application for Raspberry Pi\n" \
-       "Version: %s\n" % (config.VERSION)
+HELP = "\n    This is Hightower application for Raspberry Pi\n" \
+       "    Version: %s\n" % (config.VERSION)
 
 
 class TestCommands:
 
     def __init__(self, *args):
-        print(*args)
+        test.run_test()
 
 
 class ServerCommands:
