@@ -1,0 +1,27 @@
+{% extends "../base.htm" %}
+{% block content %}
+<h2>This is page for testing websockets</h2>
+<input id="input-msg" type="text">
+<input id="send-btn" type="submit">
+<div id="response-block">
+    <h4>Response block</h4>
+</div>
+<script>
+
+    var rb = document.getElementById("response-block");
+    var input = document.getElementById("input-msg");
+    var sb = document.getElementById("send-btn");
+    var ws = new WebSocket("ws://localhost:9999/websocket");
+    sb.addEventListener("click", function() {
+        ws.send(input.value);
+    }, false)
+//    ws.onopen = function() {
+//        ws.send("Hello, world");
+//    };
+    ws.onmessage = function (evt) {
+        var node = document.createElement("p")
+        node.innerHTML = evt.data
+        rb.appendChild(node);
+    };
+</script>
+{% end %}
