@@ -1,6 +1,6 @@
 import unittest
 from hitowerpi import config
-from hitowerpi.pins import  Pins, FakeGPIO
+from hitowerpi.pins import Pins, FakeGPIO
 
 PIN1, PIN2, PIN10, PIN16 = (1, 2, 10, 16)
 PIN1_STATE, PIN2_STATE, PIN10_STATE, PIN16_STATE = (0, 1, 1, 0)
@@ -41,24 +41,11 @@ class TestPinMethods(unittest.TestCase):
 
     def test_set_bad_pin(self):
         with self.assertRaises(ValueError):
-            Pins.get(1).state = 10
+            Pins.get(PIN1).state = 10
 
     def test_set_bad_pin(self):
         with self.assertRaises(AttributeError):
-            Pins.get(10).state = 0
-
-
-class Test2Methods(unittest.TestCase):
-    def test_isupper(self):
-        self.assertTrue('FOO'.isupper())
-        self.assertFalse('Foo'.isupper())
-
-    def test_split(self):
-        s = 'hello world'
-        self.assertEqual(s.split(), ['hello', 'world'])
-        # check that s.split fails when the separator is not a string
-        with self.assertRaises(TypeError):
-            s.split(2)
+            Pins.get(PIN2).state = 0
 
 
 def run_test():
