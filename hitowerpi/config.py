@@ -1,6 +1,7 @@
 VERSION = "0.1"
 
 FAKEPI = True
+DEBUG = True
 
 INPUT = 0
 OUTPUT = 1
