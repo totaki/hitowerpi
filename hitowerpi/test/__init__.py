@@ -1,7 +1,7 @@
 import unittest
 
 
-def run_test(module=None, case=None, func=None ):
+def run_test(module=None, case=None, func=None):
     if module:
         pass
     elif module and case:

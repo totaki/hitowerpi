@@ -1,25 +1,28 @@
+import hitowerpi.config as config
+import hitowerpi.server as server
 import hitowerpi.test as test
-from hitowerpi import config
 
 HELP = "\n    This is Hightower application for Raspberry Pi\n" \
        "    Version: %s\n" % (config.VERSION)
 
 
-class TestCommands:
+class Tester:
 
-    def __init__(self, *args):
+    @classmethod
+    def run(self, *args):
         test.run_test()
 
 
-class ServerCommands:
+class Server:
 
-    def __init__(self, *args):
-        print(*args)
+    @classmethod
+    def start(cls, *args):
+        server.run_server()
 
 
 commands = {
-    'test': lambda args: TestCommands(args),
-    'server': lambda args: ServerCommands(args)
+    'test': lambda args: Tester.run(args),
+    'server': lambda args: Server.start(args)
 }
 
 
