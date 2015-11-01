@@ -1,0 +1,11 @@
+{
+  "name": "hitowerpi-web-client",
+  "version": "0.0.1",
+  "description": "This is web client for hightower pi application",
+  "author": "Sergei Emelianov",
+  "devDependencies": {
+    "browser-sync": "^2.9.11",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0"
+  }
+}
