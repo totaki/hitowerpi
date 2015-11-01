@@ -1,16 +1,14 @@
 import unittest
 from hitowerpi.config import *
 
-FAKEGPIO = 'fakegpio'
-
 _excpected_inputs_dict = {
-    1: {PNAMEOPT: 'pin-1', PTYPEOPT: FAKEGPIO},
-    5: {PNAMEOPT: 'pin-5', PTYPEOPT: FAKEGPIO}
+    1: {PNAMEOPT: 'pin-1', PTYPEOPT: FAKETYPE, PINITOPT: str(HL)},
+    5: {PNAMEOPT: 'pin-5', PTYPEOPT: FAKETYPE, PINITOPT: str(LL)}
 }
 
 _excpected_outputs_dict = {
-    6: {PNAMEOPT: 'pin-6', PTYPEOPT: FAKEGPIO},
-    11: {PNAMEOPT: 'pin-11', PTYPEOPT: FAKEGPIO}
+    6: {PNAMEOPT: 'pin-6', PTYPEOPT: FAKETYPE, PINITOPT: str(LL)},
+    11: {PNAMEOPT: 'pin-11', PTYPEOPT: FAKETYPE, PINITOPT: str(HL)}
 }
 
 _excpected_user_dict = {

@@ -3,16 +3,24 @@ import os
 
 VERSION = "0.1"
 
-INDICT = 'inputs'
-OUTDICT = 'outputs'
+HL = 1
+LL = 0
+
 INSEC = 'INPUT'
 OUTSEC = 'OUTPUT'
+INDICT = 'inputs'
+OUTDICT = 'outputs'
+FAKETYPE = 'fake'
+PITYPE = 'pi'
+SOCTYPE = 'socket'
+PNAMEOPT = 'name'
+PTYPEOPT = 'type'
+PINITOPT = 'init'
+
 SRVSEC = 'SERVER'
 UNAMEOPT = 'username'
 UPASSOPT = 'password'
 PORTOPT = 'port'
-PNAMEOPT = 'name'
-PTYPEOPT = 'type'
 
 
 class ConfigParser:
