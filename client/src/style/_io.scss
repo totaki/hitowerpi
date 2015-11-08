@@ -1,0 +1,33 @@
+@import 'variables';
+
+$io-size: 50px;
+$io-bg-color: green;
+$io-border-color: $io-bg-color; 
+
+
+.io-inputs, .io-outputs {
+	border: 2px solid $io-border-color;
+	border-radius: 100%;
+	height: $io-size;
+	width: $io-size;
+	display: inline-block;
+}
+
+.io-inputs {
+	border-color: red;
+}
+
+p {
+	display: inline-block;
+}
+
+.io-up {
+	background-color: $io-bg-color;
+}
+
+.io-down {
+	background-color: transparent;
+}
+
+.workspace > div {
+}

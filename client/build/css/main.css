@@ -1,2 +1,18 @@
-.testing {
-  width: 71.42857%; }
+.io-inputs, .io-outputs {
+  border: 2px solid green;
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+  display: inline-block; }
+
+.io-inputs {
+  border-color: red; }
+
+p {
+  display: inline-block; }
+
+.io-up {
+  background-color: green; }
+
+.io-down {
+  background-color: transparent; }
