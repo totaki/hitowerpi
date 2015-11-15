@@ -2,7 +2,8 @@ import unittest
 from hitowerpi.config import *
 
 _excpected_inputs_dict = {
-    1: {PNAMEOPT: 'pin-1', PTYPEOPT: FAKETYPE, PINITOPT: str(HL)},
+    1: {PNAMEOPT: 'pin-1', PTYPEOPT: FAKETYPE, PINITOPT: str(HL),
+        PDESCOPT: 'Some pin-1 description'},
     5: {PNAMEOPT: 'pin-5', PTYPEOPT: FAKETYPE, PINITOPT: str(LL)}
 }
 

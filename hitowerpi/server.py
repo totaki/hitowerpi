@@ -2,8 +2,11 @@ import tornado.ioloop
 import tornado.web
 import tornado.template
 import hitowerpi.handlers as handlers
-import hitowerpi.config as config
-from hitowerpi.test import test_server
+from hitowerpi.config import *
+
+
+def api_url(module):
+    return r'/api/{}/{}'.format(API_VERSION, module)
 
 
 class Application(tornado.web.Application):
@@ -11,14 +14,11 @@ class Application(tornado.web.Application):
         handlers_ = [
             (r'/', handlers.RootHandler),
             (r'/websocket', handlers.WebSocket),
+            (api_url(IOAPP), handlers.IOApiHandler),
             ]
-        if config.DEBUG:
-            handlers_.extend([
-                (r'/testing/ws', test_server.TestWsHandler),
-            ])
         settings = dict(
             template_path='templates',
-            debug=config.DEBUG,
+            debug=DEBUG,
             )
         tornado.web.Application.__init__(self, handlers_, **settings)
 
