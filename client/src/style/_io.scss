@@ -6,10 +6,6 @@ $io-border-color: $io-bg-color;
 
 
 .io-inputs, .io-outputs {
-	border: 2px solid $io-border-color;
-	border-radius: 100%;
-	height: $io-size;
-	width: $io-size;
 	display: inline-block;
 }
 
@@ -21,6 +17,12 @@ p {
 	display: inline-block;
 }
 
+.io-state {
+	border: 2px solid $io-border-color;
+	border-radius: 100%;
+	height: $io-size;
+	width: $io-size;
+}
 .io-up {
 	background-color: $io-bg-color;
 }
