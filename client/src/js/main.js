@@ -1,4 +1,5 @@
 //= vars.js
+var clientApp;
 
 var Notifier = {
 	send: function(msg) {

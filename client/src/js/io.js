@@ -1,11 +1,14 @@
 function createDivWithText(text) {
 	var elem = document.createElement('div');
-	elem.appendChild(document.createElement('p'))
-		.appendChild(document.createTextNode(text));
+	if (text) {
+		elem.appendChild(document.createElement('p'))
+			.appendChild(document.createTextNode(text));
+	}
 	return elem;
 }
 
 var ioplus = function(str) { return 'io-' + str; }
+var iominus = function(str) { return str.slice(3); }
 
 var ioclass = {
 	name: ioplus('name'),
@@ -40,7 +43,7 @@ IO.prototype.appendStateElem = function () {
 		ioclass.state, 
 		(this.data.state && ioclass.up) || (!this.data.state && ioclass.down)
 	)
-	if (this.kind === "outputs") {
+	if (this.kind === 'outputs') {
 		this.parent.lastChild.setAttribute('onclick', 'ios.change(this)');
 	}
 	return this;
@@ -58,6 +61,15 @@ IO.prototype.createDOM = function () {
 	return this.parent;
 }
 
+IO.changeState = function (data) {
+	for (var i in data) {
+		var elem = document.getElementById(ioplus(i))
+			.getElementsByClassName(ioclass.state)[0];
+		elem.classList.toggle(ioclass.up);
+		elem.classList.toggle(ioclass.down);
+	}
+}
+
 function IOs(address) {
 	this.address = address;
 }
@@ -71,21 +83,38 @@ IOs.prototype.request = function () {
 			caller.successResponse(response)
 		}
 	}
-	req.open("GET", this.address, true);
+	req.open('GET', this.address, true);
 	req.send();
+	clientApp = 'io'
 }
 
 IOs.prototype.get = function (pin) {
 }
 
 IOs.prototype.change = function (node) {
-	// This function make post request to server
-	// if OK websocket call onSet method
-	Notifier.send('IO '+ node.parentNode.id +' change state' );
+	var req = new XMLHttpRequest();
+	var caller = this;
+	req.onreadystatechange = function() {
+		if (req.readyState == 4 && req.status == 200) {
+			var response = JSON.parse(req.responseText);
+			caller.onChange(response)
+		}
+	}
+	req.open('POST', this.address, true);
+	req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	req.send('io=' + iominus(node.parentNode.id));
 }
 
-IOs.prototype.onChange = function (pin) {
-	// This function set output state
+IOs.prototype.onChange = function (response) {
+	var msg;
+	if (response.error) {	msg = response.error;	}
+	else {
+		msg = response.message;
+		if (clientApp === response.app) {
+			IO.changeState(response.data);
+		}
+	}
+	Notifier.send(msg);
 }
 
 IOs.prototype.successResponse = function (data) {
@@ -98,4 +127,4 @@ IOs.prototype.successResponse = function (data) {
 	}
 }
 
-var ios = new IOs('/js/devdata/io.json');
+var ios = new IOs('http://localhost:9999/api/0.1/io');
