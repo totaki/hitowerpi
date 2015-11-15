@@ -10,6 +10,10 @@ class TestIOMethods(unittest.TestCase):
         nums = [1, 5]
         for io in ios:
             self.assertTrue(io.num in nums)
+        ios = IOs.outputs()
+        nums = [6, 11]
+        for io in ios:
+            self.assertTrue(io.num in nums)
 
     def test_get_io_state(self):
         io = IOs.input(1)
