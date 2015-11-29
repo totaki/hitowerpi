@@ -18,7 +18,7 @@ class BaseHandler(tornado.web.RequestHandler):
 class RootHandler(BaseHandler):
 
     def get(self):
-        self.render('root.htm')
+        self.render('index.html')
 
 
 class IOApiHandler(BaseHandler):
