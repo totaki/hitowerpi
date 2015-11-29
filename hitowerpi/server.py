@@ -13,10 +13,10 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers_ = [
             (r'/websocket', handlers.WebSocket),
+            (api_url(IOAPP), handlers.IOApiHandler),
             (r'/(.*)', tornado.web.StaticFileHandler, {
                 'path': 'client/build', 'default_filename': 'index.html' }
              ),
-            (api_url(IOAPP), handlers.IOApiHandler),
             ]
         settings = dict(
             template_path='client/build',
