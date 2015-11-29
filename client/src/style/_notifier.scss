@@ -1,0 +1,15 @@
+@import 'variables';
+
+.notifier {
+  background: $notifier-bg-color;
+  bottom: 0;
+  color: $notifier-color;
+  margin-top: 10px; 
+  position: fixed;
+  padding: 10px  10px 10px $menu-btn-size + 10px;
+  width: 100%;
+}
+
+#notifier:before {
+  content: '> ';
+}

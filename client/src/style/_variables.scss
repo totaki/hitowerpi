@@ -1,0 +1,11 @@
+$menu-active-item-color: rgba(255,255,255, .9); 
+$menu-anim-time: .1s;
+$menu-bg-color: #005;
+$menu-btn-line-bg-color: #fff;
+$menu-btn-size: 50px;
+$menu-item-color-active: darken($menu-bg-color, 20%);
+$menu-item-color: #fff;
+$menu-width: 200px;
+
+$notifier-bg-color: darken($menu-bg-color, 10%);
+$notifier-color: $menu-item-color;

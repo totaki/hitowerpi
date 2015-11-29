@@ -1,0 +1,132 @@
+@import 'variables';
+
+$menu-btn-line-margin: 5px;
+$menu-btn-rotate: 180deg;
+$menu-btn-line-size: $menu-btn-size - 2 * $menu-btn-line-margin; 
+$menu-btn-line-skewx: 45deg;
+
+@import 'animation';
+
+@mixin btn-position() {
+  height: $menu-btn-size;
+  position: absolute;
+  right: 0;
+  width: $menu-btn-size;
+}
+
+@mixin menu-and-items-shadow() {
+  box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+body {
+  margin: 0;
+}
+
+.menu {
+  background-color: $menu-bg-color;
+  left: - ($menu-width - $menu-btn-size);
+  position: fixed;
+  width: $menu-width;
+  height: 100%;
+  top: 0;
+  z-index: 2;
+  @include menu-and-items-shadow();
+}
+
+.menu-btn {
+  @include btn-position();
+}
+
+.menu-btn div{
+  background-color: $menu-btn-line-bg-color;
+  height: $menu-btn-line-size / 2;
+  margin: 0 $menu-btn-line-margin + ($menu-btn-line-size / 2) * 0.7;
+  width: $menu-btn-line-size / 4;
+}
+
+.menu-btn div:first-child {
+  margin-top: $menu-btn-line-margin;
+  @include skew-x($menu-btn-line-skewx);
+}
+
+.menu-btn div:last-child {
+  margin-bottom: $menu-btn-line-margin;
+  @include skew-x(-$menu-btn-line-skewx);
+}
+
+.menu-btn-input {
+  display: none;
+}
+
+#menu-btn-open:checked ~ .menu {
+  @include menu-anim(0, menu-open);
+}
+
+#menu-btn-close:checked ~ .menu {
+  @include menu-anim( -($menu-width - $menu-btn-size), menu-close);
+}
+
+#menu-btn-open:checked ~ .menu .menu-btn div:first-child {
+  @include menu-btn-anim(-$menu-btn-line-skewx, menu-btn-first-open);
+}
+
+#menu-btn-open:checked ~ .menu .menu-btn div:last-child {
+  @include menu-btn-anim($menu-btn-line-skewx, menu-btn-last-open);
+}
+
+#menu-btn-open:checked ~ .menu label:first-of-type {
+  z-index: 1;
+}
+
+#menu-btn-close:checked ~ .menu .menu-btn div:first-child {
+  @include menu-btn-anim($menu-btn-line-skewx, menu-btn-first-close);
+}
+
+#menu-btn-close:checked ~ .menu .menu-btn div:last-child {
+  @include menu-btn-anim(-$menu-btn-line-skewx, menu-btn-last-close);
+}
+
+.menu label {
+  display: block;
+  @include btn-position();
+  z-index: 1;
+}
+
+.menu label:first-of-type {
+  z-index: 10;
+}
+
+.menu-item {
+  height: $menu-btn-size;
+  line-height: 3em;
+  position: relative;
+  text-align: right;
+  width: $menu-width;
+}
+
+.menu-item a, .menu-item a:visited {
+  color: $menu-item-color;
+  text-decoration: none;
+}
+
+.menu-items {
+  list-style-type: none;
+  position: absolute;
+  right: 0;
+  top: $menu-btn-size;  
+}
+
+.menu-item div {
+  float: right;
+  height: $menu-btn-size;
+  width: $menu-btn-size;
+}
+
+.menu-item:target {
+  background: $menu-active-item-color;
+  @include menu-and-items-shadow();
+}
+
+.menu-item:target a {
+  color: $menu-item-color-active;
+}
