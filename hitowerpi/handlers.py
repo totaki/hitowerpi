@@ -9,6 +9,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def json_response(self, data):
         self.set_header('Content-Type', 'application/json')
+        self.set_header('Access-Control-Allow-Origin', 'http://localhost:9000')
         try:
             self.write(json.dumps(data))
         except TypeError:
