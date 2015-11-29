@@ -34,6 +34,9 @@ ERPART = 'error'
 
 IOAPP = 'io'
 
+SOCKET_CLIENT = '/tmp/htpclient.sock'
+SOCKET_SERVER = '/tmp/htpserver.sock'
+
 class ConfigParser:
 
     _pins = {INDICT: {}, OUTDICT: {}}

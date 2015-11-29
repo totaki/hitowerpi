@@ -16,7 +16,7 @@ class SocketIO(BaseIO):
     pass
 
 
-SocketIO = SocketIO
+SocketIO = SocketIO()
 
 
 class FakeIO:
