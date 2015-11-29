@@ -1,2 +1,2 @@
-var workspaceId = 'workspace';
-var notifierId = 'notifier';
+var workspaceid = 'workspace';
+var notifierid = 'notifier';

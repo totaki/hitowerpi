@@ -1,8 +1,9 @@
 //= vars.js
+var clientApp;
 
 var Notifier = {
 	send: function(msg) {
-		document.getElementById(notifierId).innerHTML = msg;
+		document.getElementById(notifierid).innerHTML = msg;
 	}
 }
 

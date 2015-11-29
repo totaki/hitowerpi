@@ -1,0 +1,128 @@
+@mixin skew-x($deg){
+  -ms-transform: skewX($deg);
+  -webkit-transform: skewX($deg);
+  transform: skewX($deg);
+}
+
+@-webkit-keyframes menu-btn-first-open {
+  0% {
+    @include skew-x($menu-btn-line-skewx);  
+  }
+  100% {
+    @include skew-x(-$menu-btn-line-skewx);  
+  }
+}
+
+@keyframes menu-btn-first-open {
+  0% {
+    @include skew-x($menu-btn-line-skewx);  
+  }
+  100% {
+    @include skew-x(-$menu-btn-line-skewx);  
+  }
+}
+
+@-webkit-keyframes menu-btn-last-open {
+  0% {
+    @include skew-x(-$menu-btn-line-skewx);  
+  }
+  100% {
+    @include skew-x($menu-btn-line-skewx);  
+  }
+}
+
+@keyframes menu-btn-last-open {
+  0% {
+    @include skew-x(-$menu-btn-line-skewx);  
+  }
+  100% {
+    @include skew-x($menu-btn-line-skewx);  
+  }
+}
+
+@-webkit-keyframes menu-btn-first-close {
+  0% {
+    @include skew-x(-$menu-btn-line-skewx);  
+  }
+  100% {
+    @include skew-x($menu-btn-line-skewx);  
+  }
+}
+
+@keyframes menu-btn-first-close {
+  0% {
+    @include skew-x(-$menu-btn-line-skewx);  
+  }
+  100% {
+    @include skew-x($menu-btn-line-skewx);  
+  }
+}
+
+@-webkit-keyframes menu-btn-last-close {
+  0% {
+    @include skew-x($menu-btn-line-skewx);  
+  }
+  100% {
+    @include skew-x(-$menu-btn-line-skewx);  
+  }
+}
+
+@keyframes menu-btn-last-close {
+  0% {
+    @include skew-x($menu-btn-line-skewx);  
+  }
+  100% {
+    @include skew-x(-$menu-btn-line-skewx);  
+  }
+}
+
+@-webkit-keyframes menu-open {
+  0% {
+    left: -($menu-width - $menu-btn-size);  
+  }
+  100% {
+    left: 0;  
+  }
+}
+
+@keyframes menu-open {
+  0% {
+    left: -($menu-width - $menu-btn-size);  
+  }
+  100% {
+    left: 0;  
+  }
+}
+
+@-webkit-keyframes menu-close {
+  0% {
+    left: 0;  
+  }
+  100% {
+    left: -($menu-width - $menu-btn-size);  
+  }
+}
+
+@keyframes menu-close {
+  0% {
+    left: 0;  
+  }
+  100% {
+    left: -($menu-width - $menu-btn-size);  
+  }
+}
+
+
+@mixin menu-btn-anim($deg, $anim) {
+  -webkit-animation: $anim $menu-anim-time linear;
+  animation: $anim $menu-anim-time linear;
+  -ms-transform: skewX($deg);
+  -webkit-transform: skewX($deg);
+  transform: skewX($deg);
+}
+
+@mixin menu-anim($pos, $anim) {
+  -webkit-animation: $anim $menu-anim-time linear;
+  animation: $anim $menu-anim-time linear;
+  left: $pos;
+}
