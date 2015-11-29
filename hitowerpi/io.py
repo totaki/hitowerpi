@@ -78,19 +78,34 @@ class IO:
     def state(self):
         return self._io.state(self._io_dct, self._num)
 
+    @property
+    def description(self):
+        try:
+            return self._info[PDESCOPT]
+        except KeyError:
+            return False
+
     def set(self, state):
         if state not in [HL, LL]:
             raise ValueError("Bad value - %s" % state)
         self._io.set(self._io_dct, self._num, state)
+        return "IO {} change state to {}".format(self._num, state)
 
     def up(self):
-        self.set(HL)
+        return self.set(HL)
 
     def down(self):
-        self.set(LL)
+        return self.set(LL)
 
     def change(self):
-        self.set(int(not self.state))
+        return self.set(int(not self.state))
+
+    def as_dict(self):
+        return {
+            PNAMEOPT: self.name,
+            PDESCOPT: self.description,
+            IOSTATE: self.state
+        }
 
 
 class IOs:
@@ -111,12 +126,36 @@ class IOs:
         return cls._get(num, config.outputs, OUTDICT)
 
     @classmethod
+    def _inputs(cls):
+        for i in config.inputs:
+            yield cls.input(i)
+
+    @classmethod
     def inputs(cls):
-        return tuple(cls.input(i) for i in config.inputs)
+        yield from cls._inputs()
+
+    @classmethod
+    def _outputs(cls):
+        for i in config.outputs:
+            yield cls.output(i)
 
     @classmethod
     def outputs(cls):
-        return tuple(cls.input(i) for i in config.outputs)
+        yield from cls._outputs()
+
+    @classmethod
+    def all_as_gen(cls):
+        return {INDICT: cls.inputs(), OUTDICT: cls.outputs()}
+
+    @classmethod
+    def all_as_dict(cls):
+        dct = {}
+        ios = cls.all_as_gen()
+        for io in ios:
+            dct[io] = {}
+            for item in ios[io]:
+                dct[io][item.num] = item.as_dict()
+        return dct
 
 
 if __name__ == "__main__":

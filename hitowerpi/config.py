@@ -1,7 +1,9 @@
 import configparser
 import os
 
+DEBUG = True
 VERSION = "0.1"
+API_VERSION = "0.1"
 
 HL = 1
 LL = 0
@@ -13,15 +15,24 @@ OUTDICT = 'outputs'
 FAKETYPE = 'fake'
 PITYPE = 'pi'
 SOCTYPE = 'socket'
+IOSTATE = 'state'
 PNAMEOPT = 'name'
 PTYPEOPT = 'type'
 PINITOPT = 'init'
+PDESCOPT = 'description'
 
 SRVSEC = 'SERVER'
 UNAMEOPT = 'username'
 UPASSOPT = 'password'
 PORTOPT = 'port'
 
+NUMPART = 'io'
+APPPART = 'app'
+MSGPART = 'message'
+DATAPART = 'data'
+ERPART = 'error'
+
+IOAPP = 'io'
 
 class ConfigParser:
 

@@ -1,13 +1,46 @@
+import json
 import tornado.web
 import tornado.websocket
+from hitowerpi.config import *
+from hitowerpi.io import IOs
+
 
 class BaseHandler(tornado.web.RequestHandler):
-    pass
+
+    def json_response(self, data):
+        self.set_header('Content-Type', 'application/json')
+        try:
+            self.write(json.dumps(data))
+        except TypeError:
+            self.send_error()
 
 
 class RootHandler(BaseHandler):
+
     def get(self):
         self.render('root.htm')
+
+
+class IOApiHandler(BaseHandler):
+
+    app = IOAPP
+
+    def get(self):
+        self.json_response(IOs.all_as_dict())
+
+    def post(self):
+        io = self.get_argument(NUMPART, default=False)
+        if io:
+            try:
+                io = IOs.output(int(io))
+                self.json_response({
+                    MSGPART: io.change(), APPPART: self.app,
+                    DATAPART: {io.num: {IOSTATE: io.state}}
+                })
+            except Exception as error:
+                self.json_response({ERPART: error})
+        else:
+            self.send_error()
 
 
 class WebSocket(tornado.websocket.WebSocketHandler):
