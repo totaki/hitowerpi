@@ -1,1 +1,10 @@
 @import 'io';
+@import 'menu';
+@import 'notifier';
+@import 'variables';
+
+.header, .workspace {
+  position: relative;
+  padding-left: $menu-btn-size + 10px;
+  z-index: 1;
+}
