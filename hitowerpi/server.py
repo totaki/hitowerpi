@@ -12,18 +12,25 @@ def api_url(module):
 class Application(tornado.web.Application):
     def __init__(self):
         handlers_ = [
-            (r'/', handlers.RootHandler),
             (r'/websocket', handlers.WebSocket),
             (api_url(IOAPP), handlers.IOApiHandler),
+            (r'/(.*)', tornado.web.StaticFileHandler, {
+                'path': 'client/build', 'default_filename': 'index.html' }
+             ),
             ]
         settings = dict(
-            template_path='templates',
+            template_path='client/build',
             debug=DEBUG,
             )
         tornado.web.Application.__init__(self, handlers_, **settings)
 
 
-def run_server():
+def make_app():
     application = Application()
     application.listen(9999)
+    return application
+
+
+def run_server():
+    make_app()
     tornado.ioloop.IOLoop.current().start()
