@@ -1,5 +1,6 @@
 var workspaceid = 'workspace';
 var notifierid = 'notifier';
+var serverPort = 9999;
 var clientApp;
 
 var Notifier = {
@@ -50,7 +51,7 @@ IO.prototype.appendNameElem = function () {
 IO.prototype.appendStateElem = function () {
 	this.parent.appendChild(document.createElement('div'));
 	this.parent.lastChild.classList.add(
-		ioclass.state, 
+		ioclass.state,
 		(this.data.state && ioclass.up) || (!this.data.state && ioclass.down)
 	)
 	if (this.kind === 'outputs') {
@@ -137,4 +138,5 @@ IOs.prototype.successResponse = function (data) {
 	}
 }
 
-var ios = new IOs('http://localhost:9999/api/0.1/io');
+var ios = new IOs(document.location.protocol + '//' + 
+  document.location.hostname + ':' + serverPort + '/api/0.1/io');

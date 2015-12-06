@@ -1,6 +1,6 @@
 @import 'variables';
 
-$io-size: 50px;
+$io-size: 24px;
 $io-bg-color: green;
 $io-border-color: $io-bg-color; 
 
@@ -18,7 +18,6 @@ p {
 
 .io-state {
 	border: 2px solid $io-border-color;
-	border-radius: 100%;
 	height: $io-size;
 	width: $io-size;
 }
