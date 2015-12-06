@@ -26,13 +26,25 @@ UNAMEOPT = 'username'
 UPASSOPT = 'password'
 PORTOPT = 'port'
 
-NUMPART = 'io'
+IOAPP = 'io'
+
+NUMPART = IOAPP
 APPPART = 'app'
 MSGPART = 'message'
 DATAPART = 'data'
 ERPART = 'error'
 
-IOAPP = 'io'
+# Notice defaults
+# types
+MSG_T = 'message'
+ACT_T = 'action'
+ST_T = 'state'
+ERR_T = 'error'
+# scopes
+MON_S = 'monitor'
+PR_S = 'program'
+IO_S = IOAPP
+
 
 SOCKET_CLIENT = '/tmp/htpclient.sock'
 SOCKET_SERVER = '/tmp/htpserver.sock'
